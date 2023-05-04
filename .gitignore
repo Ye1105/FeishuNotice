@@ -1,0 +1,9 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+/Feishu/ConsoleApp1
+/Feishu/ConsoleApp2
+/Feishu/FeishuNotice/obj/Debug/net6.0
+/Feishu/FeishuNotice/obj
+/Feishu/FeishuNotice/bin/Debug
