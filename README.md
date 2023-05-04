@@ -2,7 +2,7 @@
  * @Author: 15868707168@163.com 15868707168@163.com
  * @Date: 2023-05-04 09:22:22
  * @LastEditors: 15868707168@163.com 15868707168@163.com
- * @LastEditTime: 2023-05-04 16:43:13
+ * @LastEditTime: 2023-05-04 17:01:31
  * @FilePath: \undefinedd:\FeishuNotice\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -65,13 +65,13 @@
     ```
 
 #### 图片推送
-+ **上传图片之后，填入对应的 image_key**
++ 上传图片之后，填入对应的 **image_key**
     ``` C#
     await Feishu.RobotNotice(webhook, "img_ecffc3b9-8f14-400f-a014-05eca1a4310g");
     ```
 
 #### 信息卡片推送
-+  **信息卡片推送，包含标题、多行文本，也可以包含多个按钮跳转事件**
++  信息卡片推送，包含**标题、多行文本**，也可以包含多个**按钮跳转事件**
     ``` C#
     var actions = new Dictionary<string, string>()
     {
