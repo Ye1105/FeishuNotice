@@ -1,5 +1,5 @@
 ﻿// Nuget 发布
-// 发布包 dotnet nuget push FeishuNotice.1.0.0.nupkg --api-key oy2nj66nhkefs644z4pq6rjoysxtcuhuvbbezk47eqq22i --source https://api.nuget.org/v3/index.json
+// 发布包 dotnet nuget push pkg --api-key key --source https://api.nuget.org/v3/index.json
 // 发布完成去邮箱认证
 
 using FeishuNotice;
