@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using model;
+using Newtonsoft.Json;
 
 namespace FeishuNotice.model
 {
@@ -7,6 +8,11 @@ namespace FeishuNotice.model
     /// </summary>
     public class PostMessage : IFeishuMessage
     {
+        public PostMessage()
+        {
+            MsgType = EnumDescriptionAttribute.GetEnumDescription(EMsgType.POST);
+        }
+
         [JsonProperty("content")]
         public PostContent? PostContent { get; set; }
     }

@@ -11,7 +11,7 @@ namespace FeishuNotice.model
         TEXT,
 
         /// <summary>
-        /// 富文本
+        /// 富文本,注只支持标题、不带格式的文本、图片、链接、at人样式。更复杂的带格式的内容建议使用消息卡片实现
         /// </summary>
         [EnumDescription("post")]
         POST,
