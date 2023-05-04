@@ -14,12 +14,17 @@ namespace FeishuNotice
             {
                 return new ReponseResult
                 {
+                    Data = "参数不正确",
                     Msg = "参数不正确",
-                    Code = -1
+                    Code = 9499
                 };
             }
-
-            string data = JsonConvert.SerializeObject(message);
+            //小驼峰规则
+            var setting = new JsonSerializerSettings
+            {
+                ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver()
+            };
+            string data = JsonConvert.SerializeObject(message, setting);
             return await SendAsync(webHookUrl, data);
         }
 
@@ -39,7 +44,7 @@ namespace FeishuNotice
 
                 using (Stream stream = (await WReq.GetResponseAsync()).GetResponseStream())
                 {
-                    if (stream != null)
+                    if (stream is not null)
                     {
                         using StreamReader reader = new(stream);
                         result = await reader.ReadToEndAsync();
@@ -53,16 +58,18 @@ namespace FeishuNotice
 
                 return new ReponseResult
                 {
-                    Msg = "",
-                    Code = -1
+                    Data = "返回参数为空",
+                    Msg = "返回参数为空",
+                    Code = 4000
                 };
             }
             catch (Exception ex)
             {
                 return new ReponseResult
                 {
+                    Data = ex.Message,
                     Msg = ex.Message,
-                    Code = -1
+                    Code = 4000
                 };
             }
         }

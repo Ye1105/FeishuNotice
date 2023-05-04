@@ -11,7 +11,7 @@ namespace FeishuNotice.model
         TEXT,
 
         /// <summary>
-        /// 富文本
+        /// 富文本,注只支持标题、不带格式的文本、图片、链接、at人样式。更复杂的带格式的内容建议使用消息卡片实现
         /// </summary>
         [EnumDescription("post")]
         POST,
@@ -29,7 +29,7 @@ namespace FeishuNotice.model
         SHARE_CHAT,
 
         /// <summary>
-        /// 消息卡片
+        /// 消息卡片，只支持通过按钮、文字链方式跳转url，不支持点击后回调信息到服务端的 回传交互
         /// </summary>
         [EnumDescription("interactive")]
         INTERACTIVE,
