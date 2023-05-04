@@ -29,23 +29,23 @@ namespace Manager.Extensions.AttributeSchemas
                     #region 【枚举校验】
 
                     //【枚举校验】
-                    var isEnumType = prop.GetMethod.ReturnType.IsEnum;
-                    if (isEnumType)
+                    var isEnumType = prop.GetMethod?.ReturnType.IsEnum;
+                    if (isEnumType is not null && isEnumType.Value)
                     {
                         //获取当前的枚举值
                         var value = prop.GetValue(model);
 
                         //程序集
-                        var assembly = prop.GetMethod.ReturnType.Assembly;
+                        var assembly = prop.GetMethod?.ReturnType.Assembly;
 
                         //命名空间
-                        var nameSpace = prop.GetMethod.ReturnType.Namespace;
+                        var nameSpace = prop.GetMethod?.ReturnType.Namespace;
 
                         //名称
-                        var name = prop.GetMethod.ReturnType.Name;
+                        var name = prop.GetMethod?.ReturnType.Name;
 
                         //创建枚举实例
-                        var enumInfo = assembly.CreateInstance($"{nameSpace}.{name}", false);
+                        var enumInfo = assembly?.CreateInstance($"{nameSpace}.{name}", false);
                         if (enumInfo != null)
                         {
                             var enumType = enumInfo.GetType();
@@ -60,10 +60,10 @@ namespace Manager.Extensions.AttributeSchemas
                                 count++;
                                 errorMessages.Add($"{prop.Name}- EnumValidate:枚举成员为空");
                             }
-                            else if (!values.Contains((int)value))
+                            else if (!values.Contains(Convert.ToInt32(value)))
                             {
                                 count++;
-                                errorMessages.Add($"{prop.Name}- EnumValidate:值 {(int)value} 不在枚举 {name} 范围中");
+                                errorMessages.Add($"{prop.Name}- EnumValidate:值 {Convert.ToInt32(value)} 不在枚举 {name} 范围中");
                             }
                         }
                         else
