@@ -1,5 +1,6 @@
 ﻿using FeishuNotice.model;
 using Newtonsoft.Json;
+using System;
 using System.Net;
 using System.Text;
 
@@ -25,53 +26,7 @@ namespace FeishuNotice
                 ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver()
             };
             string data = JsonConvert.SerializeObject(message, setting);
-            return await SendAsync(webHookUrl, data);
-        }
-
-        private static async Task<ReponseResult?> SendAsync(string webHookUrl, string data)
-        {
-            try
-            {
-                string result = string.Empty;
-                WebRequest WReq = WebRequest.Create(webHookUrl);
-                WReq.Method = "POST";
-                byte[] byteArray = Encoding.UTF8.GetBytes(data);
-                WReq.ContentType = "application/json; charset=utf-8";
-                using (Stream newStream = await WReq.GetRequestStreamAsync())
-                {
-                    await newStream.WriteAsync(byteArray, 0, byteArray.Length);
-                }
-
-                using (Stream stream = (await WReq.GetResponseAsync()).GetResponseStream())
-                {
-                    if (stream is not null)
-                    {
-                        using StreamReader reader = new(stream);
-                        result = await reader.ReadToEndAsync();
-                    }
-                }
-
-                if (!string.IsNullOrEmpty(result))
-                {
-                    return JsonConvert.DeserializeObject<ReponseResult>(result);
-                }
-
-                return new ReponseResult
-                {
-                    Data = "返回参数为空",
-                    Msg = "返回参数为空",
-                    Code = 4000
-                };
-            }
-            catch (Exception ex)
-            {
-                return new ReponseResult
-                {
-                    Data = ex.Message,
-                    Msg = ex.Message,
-                    Code = 4000
-                };
-            }
+            return await HttpClientHelper.SendAsync<ReponseResult>(webHookUrl, data);
         }
     }
 }

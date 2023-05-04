@@ -7,12 +7,12 @@ namespace Manager.Extensions.AttributeSchemas
     /// </summary>
     public class UserAttribute : BaseAttribute
     {
-        public override bool Validate(object value, out string errorMessages)
+        public override bool Validate(object? value, out string errorMessages)
         {
             errorMessages = "";
             try
             {
-                var v = value.ToString();
+                var v = value?.ToString();
                 if (!string.IsNullOrWhiteSpace(v))
                 {
                     if (v.StartsWith("ou_"))

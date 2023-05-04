@@ -7,7 +7,7 @@ using FeishuNotice.model;
 using System.Formats.Asn1;
 
 //自定义机器人的 webhook
-string webhook = "https://open.feishu.cn/open-apis/bot/v2/hook/c11105a8-4de5-4f2b-b948-1fe36e66d374";
+//string webhook = "https://open.feishu.cn/open-apis/bot/v2/hook/c11105a8-4de5-4f2b-b948-1fe36e66d374";
 
 //文本推送官方文档地址
 //https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/im-v1/message/create_json#c9e08671
@@ -85,7 +85,11 @@ string webhook = "https://open.feishu.cn/open-apis/bot/v2/hook/c11105a8-4de5-4f2
 //var result = await Feishu.RobotNotice(webhook, "card title", "card content", actions);
 #endregion
 
-
 //Console.WriteLine("result: 【Code:{0}】 【Data:{1}】 【Msg:{2}】", result?.Code, result?.Data, result?.Msg);
+
+#region 签名校验
+
+#endregion
+
 
 Console.ReadLine();

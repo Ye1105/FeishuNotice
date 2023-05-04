@@ -17,25 +17,27 @@
 
         public static string GetEnumDescription(Enum enumObj)
         {
-            System.Reflection.FieldInfo fieldInfo = enumObj.GetType().GetField(enumObj.ToString());
+            System.Reflection.FieldInfo? fieldInfo = enumObj.GetType().GetField(enumObj.ToString());
 
             try
             {
-                object[] attribArray = fieldInfo.GetCustomAttributes(false);
-                if (attribArray.Length == 0)
+                object[]? attribArray = fieldInfo?.GetCustomAttributes(false);
+                if (attribArray is not null && attribArray.Length == 0)
                 {
                     return String.Empty;
                 }
                 else
                 {
-                    EnumDescriptionAttribute attrib = attribArray[0] as EnumDescriptionAttribute;
-
-                    return attrib.Description;
+                    if (attribArray is not null && attribArray[0] is not null)
+                    {
+                        return attribArray[0] is EnumDescriptionAttribute attrib ? attrib.Description : string.Empty;
+                    }
+                    return String.Empty;
                 }
             }
             catch
             {
-                return null;
+                return String.Empty;
             }
         }
     }
