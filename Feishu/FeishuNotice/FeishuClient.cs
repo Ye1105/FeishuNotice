@@ -26,7 +26,7 @@ namespace FeishuNotice
                 ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver()
             };
             string data = JsonConvert.SerializeObject(message, setting);
-            return await HttpClientHelper.SendAsync<ReponseResult>(webHookUrl, data);
+            return await HttpClientHelper.PostAsync<ReponseResult>(webHookUrl, data);
         }
     }
 }
