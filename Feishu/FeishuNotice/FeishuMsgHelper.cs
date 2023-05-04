@@ -46,7 +46,7 @@ namespace FeishuNotice
         /// <param name="title">标题</param>
         /// <param name="contents">内容</param>
         /// <returns></returns>
-        public static async Task<ReponseResult?> Notice(string webhook, string title, List<Collection<IPostContent>> contents)
+        public static async Task<ReponseResult?> Notice(string webhook, string title, List<List<IPostContent>> contents)
         {
             try
             {
