@@ -19,8 +19,12 @@ namespace FeishuNotice
                     Code = 9499
                 };
             }
-
-            string data = JsonConvert.SerializeObject(message);
+            //小驼峰规则
+            var setting = new JsonSerializerSettings
+            {
+                ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver()
+            };
+            string data = JsonConvert.SerializeObject(message, setting);
             return await SendAsync(webHookUrl, data);
         }
 

@@ -29,7 +29,7 @@ namespace FeishuNotice.model
         SHARE_CHAT,
 
         /// <summary>
-        /// 消息卡片
+        /// 消息卡片，只支持通过按钮、文字链方式跳转url，不支持点击后回调信息到服务端的 回传交互
         /// </summary>
         [EnumDescription("interactive")]
         INTERACTIVE,

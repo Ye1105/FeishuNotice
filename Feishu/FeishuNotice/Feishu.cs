@@ -1,7 +1,6 @@
 ﻿using FeishuNotice.Common;
 using FeishuNotice.model;
-using FeishuNotice.model.ImgModel;
-using model;
+using FeishuNotice.model.InteractiveModel;
 
 /**
  * 官方文档：https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN
@@ -101,27 +100,79 @@ namespace FeishuNotice
         }
 
         /// <summary>
-        /// 推送 图片格式 的消息
+        /// 推送 消息卡片 
         /// </summary>
-        /// <param name="webhook"></param>
-        /// <param name="imageKey"></param>
+        /// <param name="webhook">自定义机器人的 webhook 地址</param>
+        /// <param name="title">标题</param>
+        /// <param name="divContent">文本</param>
+        /// / <param name="actions">按钮事件 key:按钮名称  value:url</param>
         /// <returns></returns>
-        public static async Task<ReponseResult?> RobotNotice(string webhook, string imageKey)
+        public static async Task<ReponseResult?> RobotNotice(string webhook, string title, string divContent, Dictionary<string, string>? actions = null)
         {
             try
             {
-                var msg = new ImgMessage()
+                List<object>? acts = null;
+                if (actions != null && actions.Count > 0)
                 {
-                    ImgContent = new()
+                    acts = new List<object>();
+                    foreach (var item in actions)
                     {
-                        ImageKey = imageKey
+                        acts?.Add(new
+                        {
+                            Tag = "button",
+                            Text = new
+                            {
+                                Content = item.Key,
+                                Tag = "lark_md"
+                            },
+                            Url = item.Value,
+                            Type = "default",
+                            Value = new { }
+                        });
+                    }
+                }
+
+
+
+                var msg = new InteractiveMessage()
+                {
+                    Card = new
+                    {
+                        Header = new
+                        {
+                            Title = new
+                            {
+                                Content = title,
+                                Tag = "plain_text"
+                            }
+                        },
+                        Elements = new object[]
+                        {        
+                            //文本展示
+                            new
+                            {
+                                Tag="div",
+                                Text = new
+                                {
+                                    Content=divContent,
+                                    Tag="lark_md"
+                                }
+                            },
+                            //按钮事件
+                            new
+                            {
+                                Tag="action",
+                                Actions=acts
+                            }
+                        }
                     }
                 };
+
                 return await FeishuClient.SendMessageAsync(webhook, msg);
             }
             catch (Exception ex)
             {
-                LogFile.Log("Exception", "FeishuImg", LogFile.LogFileType.Day, ex.ToString());
+                LogFile.Log("Exception", "FeishuInteractiveMessage", LogFile.LogFileType.Day, ex.ToString());
                 return null;
             }
         }

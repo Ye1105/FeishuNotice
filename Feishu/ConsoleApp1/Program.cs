@@ -4,6 +4,7 @@
 
 using FeishuNotice;
 using FeishuNotice.model;
+using System.Formats.Asn1;
 
 //自定义机器人的 webhook
 string webhook = "https://open.feishu.cn/open-apis/bot/v2/hook/c11105a8-4de5-4f2b-b948-1fe36e66d374";
@@ -73,12 +74,18 @@ string webhook = "https://open.feishu.cn/open-apis/bot/v2/hook/c11105a8-4de5-4f2
 
 #endregion
 
-#region 信息卡片推送
+#region 信息卡片推送 标题、多行文本、多个按钮跳转事件
 
-var result = await Feishu.RobotNotice(webhook, "img_ecffc3b9-8f14-400f-a014-05eca1a4310g");
+//var actions = new Dictionary<string, string>()
+//{
+//    { "baidu","wwww.baidu.com"},
+//    { "bing","https://cn.bing.com/"}
+//};
+
+//var result = await Feishu.RobotNotice(webhook, "card title", "card content", actions);
 #endregion
 
 
-Console.WriteLine("result: 【Code:{0}】 【Data:{1}】 【Msg:{2}】", result?.Code, result?.Data, result?.Msg);
+//Console.WriteLine("result: 【Code:{0}】 【Data:{1}】 【Msg:{2}】", result?.Code, result?.Data, result?.Msg);
 
 Console.ReadLine();
