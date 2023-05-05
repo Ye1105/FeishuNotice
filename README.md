@@ -2,7 +2,7 @@
  * @Author: 15868707168@163.com 15868707168@163.com
  * @Date: 2023-05-04 09:22:22
  * @LastEditors: 15868707168@163.com 15868707168@163.com
- * @LastEditTime: 2023-05-05 11:43:28
+ * @LastEditTime: 2023-05-05 11:52:33
  * @FilePath: \undefinedd:\FeishuNotice\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -15,9 +15,12 @@
 + **Nuget 包请使用 2.0.0 及以上版本，建议使用最新版本**
 
 #### 安全设置
-+ **IP白名单**
-  + 在自定义机器人的设置里面配置，最多10个IP，多个IP用Enter键分隔
-  + 签名校验
+
+  + **关键词校验**
+     + 最多设置 10 个关键词。设定后，只有包含至少一个关键词的消息才会被发送。
+  + **IP校验**
+    + 最多 10 个IP，多个IP用Enter键分隔。
+  + **签名校验**
     + 全局签名配置
      ```C#
      //自定义机器人秘钥
