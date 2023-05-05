@@ -74,7 +74,7 @@ namespace FeishuNotice
         /// <param name="webhook">自定义机器人的 webhook 地址</param>
         /// <param name="imageKey">imageKey</param>
         /// <returns></returns>
-        public static async Task<ReponseResult?> RobotNotice(string webhook, string imageKey)
+        public static async Task<ReponseResult?> RobotImgNotice(string webhook, string imageKey)
         {
             try
             {
