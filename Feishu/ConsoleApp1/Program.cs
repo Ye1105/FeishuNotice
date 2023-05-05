@@ -33,7 +33,7 @@ RobotSignature.Configure(sign, timestamp.ToString(), status: true);
 
 #region 简单文本
 
-var result = await Feishu.RobotNotice(webhook, "hello");
+//var result = await Feishu.RobotNotice(webhook, "hello");
 
 #endregion 简单文本
 
@@ -87,7 +87,7 @@ var result = await Feishu.RobotNotice(webhook, "hello");
 
 #region 图片推送
 
-//var result = await Feishu.RobotNotice(webhook, "img_ecffc3b9-8f14-400f-a014-05eca1a4310g");
+var result = await Feishu.RobotImgNotice(webhook, "img_ecffc3b9-8f14-400f-a014-05eca1a4310g");
 
 #endregion 图片推送
 
