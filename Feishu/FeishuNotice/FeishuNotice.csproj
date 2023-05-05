@@ -8,14 +8,12 @@
 		<Title>Feishu.Notice</Title>
 		<FileVersion>2.0.0.0</FileVersion>
 		<Company>YeJiancong</Company>
-		<Version>2.0.4</Version>
+		<Version>2.0.5</Version>
 		<Description>
-			飞书自定义机器人，使用方式参考github说明文档：
-			https://github.com/Yjc596833/FeishuNotice
+			飞书自定义机器人，使用方式请参考github说明文档：https://github.com/Yjc596833/FeishuNotice
 		</Description>
 		<PackageReleaseNotes>
-			飞书自定义机器人，使用方式参考github说明文档：
-			https://github.com/Yjc596833/FeishuNotice
+			飞书自定义机器人，使用方式请参考github说明文档：https://github.com/Yjc596833/FeishuNotice
 			1.更新了签名校验
 			2.处理了图片消息bug
 		</PackageReleaseNotes>
