@@ -10,5 +10,17 @@ namespace FeishuNotice.model
         /// </summary>
         [JsonProperty("msg_type")]
         public string? MsgType { get; set; }
+
+        /// <summary>
+        /// 时间戳
+        /// </summary>
+        [JsonProperty("timestamp")]
+        public string? TimeStamp { get; set; }
+
+        /// <summary>
+        /// 签名
+        /// </summary>
+        [JsonProperty("sign")]
+        public string? Sign { get; set; }
     }
 }

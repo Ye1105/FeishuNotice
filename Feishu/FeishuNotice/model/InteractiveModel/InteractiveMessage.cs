@@ -1,7 +1,6 @@
-﻿using FeishuNotice.model.InteractiveModel;
+﻿using FeishuNotice.Signature;
 using model;
 using Newtonsoft.Json;
-using System.Reflection.PortableExecutable;
 
 namespace FeishuNotice.model
 {
@@ -13,6 +12,8 @@ namespace FeishuNotice.model
         public InteractiveMessage()
         {
             MsgType = EnumDescriptionAttribute.GetEnumDescription(EMsgType.INTERACTIVE);
+            Sign = RobotSignature.Status() ? RobotSignature.Sign() : null;
+            TimeStamp = RobotSignature.Status() ? RobotSignature.TimeStamp() : null;
         }
 
         /// <summary>

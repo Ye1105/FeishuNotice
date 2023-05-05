@@ -1,8 +1,5 @@
 ﻿using FeishuNotice.model;
 using Newtonsoft.Json;
-using System;
-using System.Net;
-using System.Text;
 
 namespace FeishuNotice
 {

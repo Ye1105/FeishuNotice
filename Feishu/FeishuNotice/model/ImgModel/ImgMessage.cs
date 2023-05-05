@@ -1,4 +1,5 @@
-﻿using model;
+﻿using FeishuNotice.Signature;
+using model;
 using Newtonsoft.Json;
 
 namespace FeishuNotice.model.ImgModel
@@ -11,14 +12,15 @@ namespace FeishuNotice.model.ImgModel
         public ImgMessage()
         {
             MsgType = EnumDescriptionAttribute.GetEnumDescription(EMsgType.IMAGE);
+            Sign = RobotSignature.Status() ? RobotSignature.Sign() : null;
+            TimeStamp = RobotSignature.Status() ? RobotSignature.TimeStamp() : null;
         }
 
         /// <summary>
-        /// 图片 
+        /// 图片
         /// </summary>
         [JsonProperty("content")]
         public ImgContent? ImgContent { get; set; }
-
     }
 
     public class ImgContent

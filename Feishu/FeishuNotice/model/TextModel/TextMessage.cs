@@ -1,4 +1,5 @@
-﻿using model;
+﻿using FeishuNotice.Signature;
+using model;
 using Newtonsoft.Json;
 
 namespace FeishuNotice.model
@@ -11,6 +12,8 @@ namespace FeishuNotice.model
         public TextMessage()
         {
             MsgType = EnumDescriptionAttribute.GetEnumDescription(EMsgType.TEXT);
+            Sign = RobotSignature.Status() ? RobotSignature.Sign() : null;
+            TimeStamp = RobotSignature.Status() ? RobotSignature.TimeStamp() : null;
         }
 
         [JsonProperty("content")]
