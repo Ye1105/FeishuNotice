@@ -1,6 +1,7 @@
 ﻿using FeishuNotice.Common;
 using FeishuNotice.model;
-using FeishuNotice.model.InteractiveModel;
+using FeishuNotice.model.ImgModel;
+using FeishuNotice.Signature;
 
 /**
  * 官方文档：https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN
@@ -48,6 +49,7 @@ namespace FeishuNotice
                     text = $"{text}{atUser}";
                 }
 
+
                 var msg = new TextMessage()
                 {
                     TextContent = new()
@@ -56,11 +58,38 @@ namespace FeishuNotice
                     }
                 };
 
+
                 return await FeishuClient.SendMessageAsync(webhook, msg);
             }
             catch (Exception ex)
             {
                 LogFile.Log("Exception", "FeishuText", LogFile.LogFileType.Day, ex.ToString());
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  推送 图片格式 的信息
+        /// </summary>
+        /// <param name="webhook">自定义机器人的 webhook 地址</param>
+        /// <param name="imageKey">imageKey</param>
+        /// <returns></returns>
+        public static async Task<ReponseResult?> RobotNotice(string webhook, string imageKey)
+        {
+            try
+            {
+                var msg = new ImgMessage()
+                {
+                    ImgContent = new()
+                    {
+                        ImageKey = imageKey
+                    }
+                };
+                return await FeishuClient.SendMessageAsync(webhook, msg);
+            }
+            catch (Exception ex)
+            {
+                LogFile.Log("Exception", "FeishuImage", LogFile.LogFileType.Day, ex.ToString());
                 return null;
             }
         }
@@ -100,7 +129,7 @@ namespace FeishuNotice
         }
 
         /// <summary>
-        /// 推送 消息卡片 
+        /// 推送 消息卡片
         /// </summary>
         /// <param name="webhook">自定义机器人的 webhook 地址</param>
         /// <param name="title">标题</param>
@@ -132,8 +161,6 @@ namespace FeishuNotice
                     }
                 }
 
-
-
                 var msg = new InteractiveMessage()
                 {
                     Card = new
@@ -147,7 +174,7 @@ namespace FeishuNotice
                             }
                         },
                         Elements = new object[]
-                        {        
+                        {
                             //文本展示
                             new
                             {

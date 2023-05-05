@@ -2,21 +2,38 @@
 // 发布包 dotnet nuget push pkg --api-key key --source https://api.nuget.org/v3/index.json
 // 发布完成去邮箱认证
 
+//自定义机器人的 webhook
 using FeishuNotice;
 using FeishuNotice.model;
-using System.Formats.Asn1;
+using FeishuNotice.Signature;
+using System.Web;
 
-//自定义机器人的 webhook
-//string webhook = "https://open.feishu.cn/open-apis/bot/v2/hook/c11105a8-4de5-4f2b-b948-1fe36e66d374";
+string webhook = "https://open.feishu.cn/open-apis/bot/v2/hook/c11105a8-4de5-4f2b-b948-1fe36e66d374";
 
 //文本推送官方文档地址
 //https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/im-v1/message/create_json#c9e08671
+
+#region 校验
+
+
+//自定义机器人秘钥
+var key = "hLk2ofRG8yfpJjO9x2zaGh";
+//获取当前时间戳
+var timestamp = Signature.GetTimeStamp();
+//自定义机器人签名校验
+var sign = Signature.SignatureCheck(timestamp.ToString(), key);
+//自定义机器人全局签名配置
+RobotSignature.Configure(sign, timestamp.ToString(), status: true);
+
+
+#endregion
+
 
 #region 文本推送
 
 #region 简单文本
 
-//var result = await Feishu.RobotNotice(webhook, "hello");
+var result = await Feishu.RobotNotice(webhook, "hello");
 
 #endregion 简单文本
 
@@ -66,13 +83,13 @@ using System.Formats.Asn1;
 
 //var result = await Feishu.RobotNotice(webhook, "标题", data);
 
-#endregion 
+#endregion 富文本推送
 
-#region  图片推送
+#region 图片推送
 
 //var result = await Feishu.RobotNotice(webhook, "img_ecffc3b9-8f14-400f-a014-05eca1a4310g");
 
-#endregion
+#endregion 图片推送
 
 #region 信息卡片推送 标题、多行文本、多个按钮跳转事件
 
@@ -83,13 +100,9 @@ using System.Formats.Asn1;
 //};
 
 //var result = await Feishu.RobotNotice(webhook, "card title", "card content", actions);
-#endregion
 
-//Console.WriteLine("result: 【Code:{0}】 【Data:{1}】 【Msg:{2}】", result?.Code, result?.Data, result?.Msg);
+#endregion 信息卡片推送 标题、多行文本、多个按钮跳转事件
 
-#region 签名校验
-
-#endregion
-
+Console.WriteLine("result: 【Code:{0}】 【Data:{1}】 【Msg:{2}】", result?.Code, result?.Data, result?.Msg);
 
 Console.ReadLine();

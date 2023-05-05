@@ -8,8 +8,8 @@ namespace FeishuNotice
     /// </summary>
     public class HttpClientHelper
     {
-
         #region Post
+
         /// <summary>
         /// Post 异步请求
         /// </summary>
@@ -20,7 +20,6 @@ namespace FeishuNotice
         {
             try
             {
-
                 string result = string.Empty;
                 //设置Http的正文
                 HttpContent httpContent = new StringContent(data);
@@ -64,7 +63,6 @@ namespace FeishuNotice
         {
             try
             {
-
                 string result = string.Empty;
                 //设置Http的正文
                 HttpContent httpContent = new StringContent(data);
@@ -125,7 +123,7 @@ namespace FeishuNotice
             return result;
         }
 
-        #endregion
+        #endregion Post
 
         #region Get
 
@@ -182,13 +180,12 @@ namespace FeishuNotice
             return result;
         }
 
-        #endregion
+        #endregion Get
 
         #region Put
 
         public static async Task<T?> PutAsync<T>(string url, string putData) where T : class, new()
         {
-
             HttpContent httpContent = new StringContent(putData);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json")
             {
@@ -206,10 +203,8 @@ namespace FeishuNotice
             return null;
         }
 
-
         public static T? Put<T>(string url, string putData) where T : class, new()
         {
-
             HttpContent httpContent = new StringContent(putData);
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json")
             {
@@ -226,7 +221,6 @@ namespace FeishuNotice
 
             return null;
         }
-
 
         public static string Put(string url, string data, out string statusCode)
         {
@@ -248,10 +242,6 @@ namespace FeishuNotice
             return result;
         }
 
-
-
-
-        #endregion
-
+        #endregion Put
     }
 }

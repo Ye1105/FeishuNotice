@@ -2,7 +2,7 @@
  * @Author: 15868707168@163.com 15868707168@163.com
  * @Date: 2023-05-04 09:22:22
  * @LastEditors: 15868707168@163.com 15868707168@163.com
- * @LastEditTime: 2023-05-04 17:52:40
+ * @LastEditTime: 2023-05-05 11:43:28
  * @FilePath: \undefinedd:\FeishuNotice\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -16,7 +16,28 @@
 
 #### 安全设置
 + **IP白名单**
-  + 在自定义机器人的设置里面配置，多个IP用Enter键分隔
+  + 在自定义机器人的设置里面配置，最多10个IP，多个IP用Enter键分隔
+  + 签名校验
+    + 全局签名配置
+     ```C#
+     //自定义机器人秘钥
+    var key = "**************";
+    
+    //获取当前时间戳
+    var timestamp = Signature.GetTimeStamp();
+    
+    //自定义机器人签名校验
+    var sign = Signature.SignatureCheck(timestamp.ToString(), key);
+   
+    /// <summary>
+    /// 全局配置自定义机器人安全设置签名校验
+    /// </summary>
+    /// <param name="sign">签名</param>
+    /// <param name="timestamp">时间戳</param>
+    /// <param name="status">true 开启签名认证，false 关闭签名认证，配置完成后默认开启</param>
+    /// <returns></returns>
+    RobotSignature.Configure(sign, timestamp.ToString(), status: true);
+    ```
 
 
 #### WebHook
