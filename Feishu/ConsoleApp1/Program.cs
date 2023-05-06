@@ -4,6 +4,7 @@
 
 //自定义机器人的 webhook
 using FeishuNotice;
+using FeishuNotice.Common;
 using FeishuNotice.model;
 using FeishuNotice.Signature;
 using System.Web;
@@ -13,7 +14,7 @@ string webhook = "https://open.feishu.cn/open-apis/bot/v2/hook/c11105a8-4de5-4f2
 //文本推送官方文档地址
 //https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/im-v1/message/create_json#c9e08671
 
-#region 校验
+#region 签名校验
 
 
 //自定义机器人秘钥
@@ -87,7 +88,7 @@ RobotSignature.Configure(sign, timestamp.ToString(), status: true);
 
 #region 图片推送
 
-var result = await Feishu.RobotImgNotice(webhook, "img_ecffc3b9-8f14-400f-a014-05eca1a4310g");
+//var result = await Feishu.RobotImgNotice(webhook, "img_ecffc3b9-8f14-400f-a014-05eca1a4310g");
 
 #endregion 图片推送
 
@@ -102,7 +103,5 @@ var result = await Feishu.RobotImgNotice(webhook, "img_ecffc3b9-8f14-400f-a014-0
 //var result = await Feishu.RobotNotice(webhook, "card title", "card content", actions);
 
 #endregion 信息卡片推送 标题、多行文本、多个按钮跳转事件
-
-Console.WriteLine("result: 【Code:{0}】 【Data:{1}】 【Msg:{2}】", result?.Code, result?.Data, result?.Msg);
-
+//Console.WriteLine("result: 【Code:{0}】 【Data:{1}】 【Msg:{2}】", result?.Code, result?.Data, result?.Msg);
 Console.ReadLine();
