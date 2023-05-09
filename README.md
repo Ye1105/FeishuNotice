@@ -20,7 +20,7 @@
 > 可以选择一种或者多种安全设置
 
   + **关键词校验**
-     
+    
      + 最多设置 10 个关键词。设定后，只有包含至少一个关键词的消息才会被发送。
      
   + **IP校验**
@@ -38,7 +38,7 @@
     var timestamp = Signature.GetTimeStamp();
     
     //自定义机器人签名校验
-   var sign = Signature.SignatureCheck(timestamp.ToString(), key);
+	var sign = Signature.SignatureCheck(timestamp.ToString(), key);
        
     /// <summary>
     /// 全局配置自定义机器人安全设置签名校验
@@ -57,17 +57,17 @@
 ### :zap:文本推送
 
 + **简单文本**
-    
+  
     ``` C#
     await Feishu.RobotNotice(webhook, "hello");
     ```
 + **换行符** 
-    
+  
     ``` C#
     await Feishu.RobotNotice(webhook, "firstline \n second line")
     ```
 + **@ 用户** 
-    
+  
     ``` C#
     var dic = new Dictionary<string, string>
     {
@@ -124,7 +124,7 @@
 ### :mag:返回信息
 
 +  **打印返回信息**：[官网通用错误码参照](https://open.feishu.cn/document/ukTMukTMukTM/ugjM14COyUjL4ITN)
-    
+  
     ``` C#
     Console.WriteLine("result: 【Code:{0}】 【Data:{1}】 【Msg:{2}】", result?.Code, result?.Data, result?.Msg);
     ```
@@ -132,7 +132,7 @@
 ### :bug:错误日志
 
 +  **日志文件位置：** 
-    
+  
     ```
     项目生成目录\Log\Exception\Feishu****.log
     ```
@@ -141,5 +141,5 @@
 
 > 有想法的小伙伴可以联系作者一起开发项目哦，很期待有大佬带带我！😼😼😼
 
-+ [Wechat](./README_CONTACT.md)
++ **wechat**  ：`yejiancong1105`
 
