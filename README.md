@@ -13,7 +13,7 @@
 ### :package:安装Nuget
 
 + **FeishuNotice**
-+ **Nuget 包请使用 2.0.7 及以上版本，建议使用最新版本**
++ **Nuget 包请使用 2.0.8 及以上版本，建议使用最新版本**
 
 ### 🧷安全设置
 
@@ -31,23 +31,16 @@
     
     + 全局签名配置，只需要在项目入口中配置一次
     ```C#
-     //自定义机器人秘钥
+    //自定义机器人秘钥
     var key = "**************";
-    
-    //获取当前时间戳
-    var timestamp = Signature.GetTimeStamp();
-    
-    //自定义机器人签名校验
-	var sign = Signature.SignatureCheck(timestamp.ToString(), key);
        
     /// <summary>
     /// 全局配置自定义机器人安全设置签名校验
     /// </summary>
-    /// <param name="sign">签名</param>
-    /// <param name="timestamp">时间戳</param>
-    /// <param name="status">true 开启签名认证，false 关闭签名认证，配置完成后默认开启</param>
+    /// <param name="key">自定义机器人秘钥</param>
+	/// <param name="status">true 开启签名认证，false 关闭签名认证，配置完成后默认开启</param>
     /// <returns></returns>
-    RobotSignature.Configure(sign, timestamp.ToString(), status: true);
+    RobotSignature.Configure(key, status: true);
     ```
 
 ### :beers:WebHook
@@ -59,7 +52,11 @@
 + **简单文本**
   
     ``` C#
+    //***异步发送***
     await Feishu.RobotNotice(webhook, "hello");
+    
+    //***同步发送*** => 格式：【异步方法名称+Sync】，以下皆如此
+    Feishu.RobotNoticeSync(webhook, "hello");  
     ```
 + **换行符** 
   
@@ -97,8 +94,8 @@
                 UserId = "all", //取值使用"all"来at所有人
                 UserName="所有人"
             }
-    }
-    await Feishu.RobotNotice(webhook, "标题", data);
+    };
+    await Feishu.RobotNotice(webhook, "标题", data); //同步：
     ```
 
 ### :camera_flash:图片推送
@@ -117,8 +114,7 @@
         { "baidu","wwww.baidu.com"},
         { "bing","https://cn.bing.com/"}
     };
-
-    var result = await Feishu.RobotNotice(webhook, "card title", "card content", actions);
+var result = await Feishu.RobotNotice(webhook, "card title", "card content", actions);
     ```
 
 ### :mag:返回信息
@@ -139,7 +135,7 @@
 
 ### 💕联系作者
 
-> 有想法的小伙伴可以联系作者一起开发项目哦，很期待有大佬带带我！😼😼😼
+> 有想法的小伙伴可以联系作者一起开发项目！😼😼😼
 
 + **wechat**  ：`yejiancong1105`
 
