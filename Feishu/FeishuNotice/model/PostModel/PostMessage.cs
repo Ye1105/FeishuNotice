@@ -12,8 +12,8 @@ namespace FeishuNotice.model
         public PostMessage()
         {
             MsgType = EnumDescriptionAttribute.GetEnumDescription(EMsgType.POST);
-            Sign = RobotSignature.Status() ? RobotSignature.Sign() : null;
-            TimeStamp = RobotSignature.Status() ? RobotSignature.TimeStamp() : null;
+            TimeStamp = RobotSignature.Encryption().Item1;
+            Sign = RobotSignature.Encryption().Item2;
         }
 
         [JsonProperty("content")]

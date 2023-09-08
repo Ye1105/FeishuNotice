@@ -12,8 +12,8 @@ namespace FeishuNotice.model
         public InteractiveMessage()
         {
             MsgType = EnumDescriptionAttribute.GetEnumDescription(EMsgType.INTERACTIVE);
-            Sign = RobotSignature.Status() ? RobotSignature.Sign() : null;
-            TimeStamp = RobotSignature.Status() ? RobotSignature.TimeStamp() : null;
+            TimeStamp = RobotSignature.Encryption().Item1;
+            Sign = RobotSignature.Encryption().Item2;
         }
 
         /// <summary>

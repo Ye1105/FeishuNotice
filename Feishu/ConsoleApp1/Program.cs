@@ -9,7 +9,7 @@ using FeishuNotice.model;
 using FeishuNotice.Signature;
 using System.Web;
 
-string webhook = "https://open.feishu.cn/open-apis/bot/v2/hook/c11105a8-4de5-4f2b-b948-1fe36e66d374";
+string webhook = "https://open.feishu.cn/open-apis/bot/v2/hook/7d49361d-5660-425d-97bb-e0680b6774d5";
 
 //文本推送官方文档地址
 //https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/im-v1/message/create_json#c9e08671
@@ -18,13 +18,10 @@ string webhook = "https://open.feishu.cn/open-apis/bot/v2/hook/c11105a8-4de5-4f2
 
 
 //自定义机器人秘钥
-var key = "hLk2ofRG8yfpJjO9x2zaGh";
-//获取当前时间戳
-var timestamp = Signature.GetTimeStamp();
-//自定义机器人签名校验
-var sign = Signature.SignatureCheck(timestamp.ToString(), key);
-//自定义机器人全局签名配置
-RobotSignature.Configure(sign, timestamp.ToString(), status: true);
+var key = "oy6EnuG2O3J9Va9YIn7XNe";
+
+//自定义机器人签名配置
+RobotSignature.Configure(key, status: true);
 
 
 #endregion
@@ -34,7 +31,9 @@ RobotSignature.Configure(sign, timestamp.ToString(), status: true);
 
 #region 简单文本
 
-//var result = await Feishu.RobotNotice(webhook, "hello");
+var result = Feishu.RobotNoticeSync(webhook, "hello");
+
+var result2 = await Feishu.RobotNotice(webhook, "hello");
 
 #endregion 简单文本
 
